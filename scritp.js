@@ -2,8 +2,8 @@
     we can do this like this 
     
 document.getElementById('btn-deposit').addEventListener('click', function () {
-    const depositInput = document.getElementById('deposit-field');
-    const depositAmountText = depositInput.value;
+    const inputField = document.getElementById('deposit-field');
+    const depositAmountText = inputField.value;
     const depositAmount = parseFloat(depositAmountText);
 
     // get current deposit 
@@ -20,7 +20,7 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
     balanceTotal.innerText = privousBalanceTotal + depositAmount;
     // console.log(depositTotalText);
     //clear text
-    depositInput.value = '';
+    inputField.value = '';
 })
 
 
@@ -58,23 +58,24 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
 
 
 /* New functional code */
-function getInputValue() {
-    const depositInput = document.getElementById('deposit-field');
-    const depositAmountText = depositInput.value;
-    const depositAmount = parseFloat(depositAmountText);
+function getInputValue(inputId) {
+    const inputField = document.getElementById(inputId);
+    const AmountText = inputField.value;
+    const Amount = parseFloat(AmountText);
 
-    depositInput.value = '';
-    return depositAmount;
+    inputField.value = '';
+    return Amount;
 }
 
 
 
 
 /* New functional code ended */
+
+
 document.getElementById('btn-deposit').addEventListener('click', function () {
-    const depositInput = document.getElementById('deposit-field');
-    const depositAmountText = depositInput.value;
-    const depositAmount = parseFloat(depositAmountText);
+
+    const depositAmount = getInputValue('deposit-field')
 
     // get current deposit 
     const depositTotal = document.getElementById('deposit-total');
@@ -96,7 +97,7 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
 
 document.getElementById('btn-withdraw').addEventListener('click', function () {
 
-    const depositAmount = getInputValue();
+    const withdrawAmount = getInputValue('withdraw-field');
 
     // update withdraw total 
     const withdrawTotal = document.getElementById('withdraw-total');
@@ -111,6 +112,4 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
 
     balanceTotal.innerText = privousBalanceTotal - withdrawAmount;
 
-    // clear withdraw input
-    withdrawInput.value = '';
 }) 
