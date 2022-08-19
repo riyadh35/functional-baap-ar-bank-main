@@ -19,3 +19,27 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
     //clear text
     depositInput.value = '';
 })
+
+
+
+document.getElementById('btn-withdraw').addEventListener('click', function () {
+    const withdrawInput = document.getElementById('withdraw-field');
+    const withdrawAmountText = withdrawInput.value;
+    const withdrawAmount = parseFloat(withdrawAmountText);
+
+    // update withdraw total 
+    const withdrawTotal = document.getElementById('withdraw-total');
+    const withdrawTotalText = withdrawTotal.innerText;
+    const privousWithdrawTotal = parseFloat(withdrawTotalText);
+    withdrawTotal.innerText = withdrawAmount + privousWithdrawTotal;
+
+    // update balance total after withdraw
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const privousBalanceTotal = parseFloat(balanceTotalText);
+
+    balanceTotal.innerText = privousBalanceTotal - withdrawAmount;
+
+    // clear withdraw input
+    withdrawInput.value = '';
+})
