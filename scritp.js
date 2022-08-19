@@ -57,6 +57,9 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
 // const second = doubleIt(6)
 
 
+
+
+
 /* New functional code */
 function getInputValue(inputId) {
     const inputField = document.getElementById(inputId);
@@ -68,6 +71,15 @@ function getInputValue(inputId) {
 }
 
 
+function updateTotalField(totalFieldId, amount) {
+    const totalElement = document.getElementById(totalFieldId);
+    const totalText = totalElement.innerText;
+    const privousTotal = parseFloat(totalText);
+    totalElement.innerText = amount + privousTotal;
+}
+
+
+
 
 
 /* New functional code ended */
@@ -77,11 +89,7 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
 
     const depositAmount = getInputValue('deposit-field')
 
-    // get current deposit 
-    const depositTotal = document.getElementById('deposit-total');
-    const depositTotalText = depositTotal.innerText;
-    const privousDepsitTotal = parseFloat(depositTotalText);
-    depositTotal.innerText = depositAmount + privousDepsitTotal;
+    updateTotalField('deposit-total', depositAmount);
 
     // update balance after deposit
 
@@ -98,13 +106,7 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
 document.getElementById('btn-withdraw').addEventListener('click', function () {
 
     const withdrawAmount = getInputValue('withdraw-field');
-
-    // update withdraw total 
-    const withdrawTotal = document.getElementById('withdraw-total');
-    const withdrawTotalText = withdrawTotal.innerText;
-    const privousWithdrawTotal = parseFloat(withdrawTotalText);
-    withdrawTotal.innerText = withdrawAmount + privousWithdrawTotal;
-
+    updateTotalField('withdraw-total', withdrawAmount)
     // update balance total after withdraw
     const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
