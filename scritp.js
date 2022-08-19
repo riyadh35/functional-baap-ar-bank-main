@@ -78,6 +78,18 @@ function updateTotalField(totalFieldId, amount) {
     totalElement.innerText = amount + privousTotal;
 }
 
+function updateBalance(depositAmount, isAdd) {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const privousBalanceTotal = parseFloat(balanceTotalText);
+    if (isAdd == true) {
+        balanceTotal.innerText = privousBalanceTotal + depositAmount;
+    }
+    else {
+        balanceTotal.innerText = privousBalanceTotal - depositAmount;
+    }
+}
+
 
 
 
@@ -92,13 +104,8 @@ document.getElementById('btn-deposit').addEventListener('click', function () {
     updateTotalField('deposit-total', depositAmount);
 
     // update balance after deposit
+    updateBalance(depositAmount, true);
 
-    const balanceTotal = document.getElementById('balance-total');
-    const balanceTotalText = balanceTotal.innerText;
-    const privousBalanceTotal = parseFloat(balanceTotalText);
-    balanceTotal.innerText = privousBalanceTotal + depositAmount;
-    // console.log(depositTotalText);
-    //clear text
 })
 
 
@@ -107,11 +114,6 @@ document.getElementById('btn-withdraw').addEventListener('click', function () {
 
     const withdrawAmount = getInputValue('withdraw-field');
     updateTotalField('withdraw-total', withdrawAmount)
-    // update balance total after withdraw
-    const balanceTotal = document.getElementById('balance-total');
-    const balanceTotalText = balanceTotal.innerText;
-    const privousBalanceTotal = parseFloat(balanceTotalText);
-
-    balanceTotal.innerText = privousBalanceTotal - withdrawAmount;
+    updateBalance(withdrawAmount, false);
 
 }) 
